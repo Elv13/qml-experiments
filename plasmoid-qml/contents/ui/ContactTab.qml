@@ -289,15 +289,15 @@ Plasma.Page {
          when: (requestNumberOverlay == true)
       }
    ]
-   /*onRequestNumberOverlayChanged: {
+   onRequestNumberOverlayChanged: {
       if (requestNumberOverlay ==  false)
          reset()
-   }*/
+   }
 
    function reset() {
-      /*selectedItem = "-1"
+      selectedItem = "-1"
       callNumber = ""
       selectedPCount = 0
-      requestNumberOverlay = false*/
+      requestNumberOverlay = false
    }
 }

@@ -57,6 +57,7 @@ Rectangle {
                text:"<b>"+type+"</b> ("+number+")"
                onClicked: {
                   call(number);
+                  numberOverlay.visible = false
                }
             }
          }

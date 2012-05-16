@@ -22,13 +22,13 @@ Rectangle {
    ContactTab {
       id:contactList
       visible:false
-//       onRequestNumberOverlayChanged: {
-//          console.log("OVERLAY "+contactList.requestNumberOverlay)
-//          if (contactList.requestNumberOverlay == true) {
-//             numberOverlay.contactId = contactList.selectedItem
-//             numberOverlay.visible=true
-//          }
-//       }
+      onRequestNumberOverlayChanged: {
+         console.log("OVERLAY "+contactList.requestNumberOverlay)
+         if (contactList.requestNumberOverlay == true) {
+            numberOverlay.contactId = contactList.selectedItem
+            numberOverlay.visible=true
+         }
+      }
    }
    
    Settingstab {
