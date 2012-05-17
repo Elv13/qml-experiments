@@ -104,6 +104,7 @@ Rectangle {
                transfer(callId,transferText.text)
                callId = ""
                transferText.text = ""
+               transferOverlay.visible = false
             }
          }
       }
