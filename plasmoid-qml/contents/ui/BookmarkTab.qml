@@ -9,7 +9,7 @@ Plasma.Page {
     
     property int selectedItem: -1
 
-    Component {
+   Component {
       id: contactDelegate
       Rectangle {
          id:bookmarkItemRect

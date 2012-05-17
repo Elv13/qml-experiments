@@ -8,11 +8,6 @@ Rectangle {
     color:theme.viewBackgroundColor
    
     signal numbrePressed(string number)
-    anchors {
-         top: display.bottom;
-         left: parent.left;
-         right: parent.right;
-    }
     function getNumber(idx) {
         var nb = new Array("1","2","3","4","5","6","7","8","9","*","0","#")
         return nb[idx]
@@ -29,6 +24,7 @@ Rectangle {
                 height:48
                 text:getNumber(index)+ "\n" + Array("","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz","","+","","")[index]
                 onClicked: {
+                   playDMTF(index)
                    dialPad.numbrePressed(dialPad.getNumber(index))
                 }
             }

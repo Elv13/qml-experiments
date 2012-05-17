@@ -17,6 +17,12 @@ Rectangle {
    CallTab {
       id:callList
       visible:true
+      onRequestNumberOverlayChanged: {
+         if (requestNumberOverlay ==  true) {
+            transferOverlay.callId  = callList.currentCallId
+            transferOverlay.visible = true
+         }
+      }
    }
    
    ContactTab {
@@ -35,24 +41,23 @@ Rectangle {
       id:settingsTab
       visible:false
    }
-
+   
    HistoryTab {
       id:historyList
       visible:false
    }
-
+   
    BookmarkTab {
       id:bookmarkList
       visible:false
    }
-
-
+   
    TabBar {
       id:tabs
       width:parent.width
       height:50
    }
-
+   
    NumberOverlay {
       id:numberOverlay
       visible:false
@@ -64,11 +69,51 @@ Rectangle {
       }
    }
 
+   TransferOverlay {
+      id:transferOverlay
+      visible:false
+      onVisibleChanged: {
+         if (transferOverlay.visible == false) {
+            callList.requestNumberOverlay = false
+         }
+      }
+   }
+   
    function call(number) {
       var service = dataSource.serviceForSource("calls")
       var operation = service.operationDescription("Call")
       operation.AccoutId = settingsTab.defaultaccount
       operation.Number = number
+      var job = service.startOperationCall(operation)
+   }
+   
+   function playDMTF(number) {
+      var service = dataSource.serviceForSource("calls")
+      var operation = service.operationDescription("DMTF")
+      operation.str = number
+      var job = service.startOperationCall(operation)
+   }
+   
+   function transfer(callId,transferNumber) {
+      var service = dataSource.serviceForSource("calls")
+      var operation = service.operationDescription("Transfer")
+      operation.callid         = callId
+      operation.transfernumber = transferNumber
+      var job = service.startOperationCall(operation)
+   }
+   
+   function hangUp(callId) {
+      var service = dataSource.serviceForSource("calls")
+      var operation = service.operationDescription("Hangup")
+      operation.callid = callId
+      var job = service.startOperationCall(operation)
+   }
+   
+   function hold(callId) {
+      var service = dataSource.serviceForSource("calls")
+      var operation = service.operationDescription("Hold")
+      operation.callid = callId
+      operation.hold   = hold
       var job = service.startOperationCall(operation)
    }
 }

@@ -7,7 +7,7 @@ Rectangle {
 
    property string contactId: ""
    
-   color:"#DD000000"
+   color:"#BB000000"
    width:parent.width
    height:parent.height
 
