@@ -1,9 +1,7 @@
 import QtQuick 1.1
 
-Rectangle {
+Component {
     id: callDelegate
-    //property QModelIndex model
-    property string display : ""
     Item {
         width: parent.parent.width
         height: 40
@@ -19,10 +17,10 @@ Rectangle {
                     color: "black"
                     font.bold: true
                 }
-               /* Text {
+                Text {
                     text: model.number
                     color: "black"
-                }*/
+                }
             }
         }
     }

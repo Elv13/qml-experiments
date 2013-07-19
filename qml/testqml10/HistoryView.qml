@@ -1,68 +1,61 @@
 import QtQuick 1.1
 
 Rectangle {
-    CallDelegate {
-        id: callDelegate
-    }
+   CallDelegate {
+      id: callDelegate
+   }
 
-    Rectangle {
-        id: historyView
-        width: parent.width
-        height: parent.height
-        color: "black"
+   Rectangle {
+      id: historyView
+      width: parent.width
+      height: parent.height
+      color: "black"
 
-        CallDelegate {
-            id: historyDelegate
-        }
+      HistoryDelegate {
+         id: historyDelegate
+      } //historyDelegate
 
-        Flickable {
-            width:parent.width
-            height:parent.height
-            contentWidth: parent.width; contentHeight: historyCats.height
-            Column {
-                 x: 5; y: 5
-                 //id:historyCategories
-                 id:historyCats
-                 spacing: 10
-                 width: parent.width
-                 //height:parent.height
+      Flickable {
+         width:parent.width
+         height:parent.height
+         contentWidth: parent.width; contentHeight: historyCategories.height
+         Column {
+            x: 5; y: 5
+            id:historyCategories
+            spacing: 10
+            width: parent.width
 
-                 Repeater {
-                    model: HistoryModel
-                    Rectangle {
-                      width: parent.width
-                      height: childrenLayout.height + 60
-                      color: "lightgreen"
+            Repeater {
+               model: HistoryModel
+               Rectangle {
+                  id: categoryRect
+                  width: parent.width
+                  height: childrenLayout.height + 60
+                  color: "lightgreen"
 
-                      Text { text: display
-                          font.pointSize: 10
-                          anchors.top: parent.top
-                      } //Text
-                      Column {
-                          spacing: 4
-                          y:20
-                          id:childrenLayout
-                          Repeater {
-                              id: childrenView
-                              model:VisualDataModel {
-                                  model: HistoryModel
-                                  delegate: historyDelegate
-                                  Component.onCompleted: {
-                                      console.log("oui")
-                                      childrenView.model.rootIndex = childrenView.model.modelIndex(index)
-                                  }
-                              } //Visual
-
-                              onModelChanged: {
-                                  console.log("here"+index)
-                                    childrenView.model.rootIndex = childrenView.model.modelIndex(childrenView.index)
-                              }
-
-                          } //Repeater2
-                      } //Column2
-                  } //Rectable
-                 } //Repeater
-             } //Column
-        } //Flick
-    }
+                  Text { text: display
+                     font.pointSize: 10
+                     anchors.top: parent.top
+                  } //Text
+                  Column {
+                     spacing: 4
+                     y:20
+                     id:childrenLayout
+                     Repeater {
+                        id: childrenView
+                        model:VisualDataModel {
+                           id:childrenVisualDataModel
+                           model: HistoryModel
+                           Component.onCompleted: {
+                              childrenView.model.rootIndex = childrenView.model.modelIndex(index)
+                              childrenVisualDataModel.delegate = historyDelegate
+                           }
+                        } //childrenVisualDataModel
+                     } //childrenView
+                  } //childrenLayout
+               } //categoryRect
+            } //HistoryModel Repeater
+         } //Column
+      } //Flick
+   } //historyView
 }

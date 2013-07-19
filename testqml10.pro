@@ -34,7 +34,8 @@ include(qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()
 
 OTHER_FILES += \
-    qml/testqml10/TabView.qml
+    qml/testqml10/TabView.qml \
+    qml/testqml10/HistoryDelegate.qml
 
 HEADERS += \
     qmlwindow.h
