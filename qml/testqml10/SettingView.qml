@@ -1,6 +1,7 @@
 import QtQuick 1.1
 
 Rectangle {
+    id:settingView
    color: "green"
    
    Component {
@@ -19,6 +20,14 @@ Rectangle {
                text: display
                color: "black"
                font.bold: true
+            }
+         }
+         MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                console.log("ici2 "+model.alias+" "+model.object+" "+AccountListModel.getAccountById(model.id))
+                settingView.state = "AccountDetails"
+                accountSettings.account = AccountListModel.getAccountById(model.id)
             }
          }
       }
@@ -48,10 +57,10 @@ Rectangle {
             onClicked: {
                console.log("ici")
                if (name == "Accounts") {
-                  settingView.state = "Accounts"
-                  settingView.delegate = null
-                  settingView.model = HistoryModel
-                  settingView.delegate = accountDelegate
+                  settingViewList.state = "Accounts"
+                  settingViewList.delegate = null
+                  settingViewList.model = AccountListModel
+                  settingViewList.delegate = accountDelegate
                }
             }
          }
@@ -59,7 +68,7 @@ Rectangle {
    }
 
    ListModel {
-      id: settingCategories
+      id: settingCategoriesModel
       ListElement {
             name: "Accounts"
       }
@@ -76,21 +85,35 @@ Rectangle {
             name: "History"
       }
    }
+
+   AccountSettings {
+       id:accountSettings
+       visible:false
+   }
    
    ListView {
-      id:settingView
-      model: settingCategories
+      id:settingViewList
+      model: settingCategoriesModel
       anchors.top: parent.top
       width:parent.width
       height:parent.height
       delegate: settingDelegate
-      states: [
-         State {
-            name: "Default"
-         },
-         State {
-            name: "Accounts"
-         }
-      ]
    }
+   states: [
+      State {
+         name: "Default"
+         PropertyChanges {target: settingViewList; visible: true  }
+         PropertyChanges {target: accountSettings  ; visible: false }
+      },
+      State {
+         name: "Accounts"
+         PropertyChanges {target: settingViewList; visible: true  }
+         PropertyChanges {target: accountSettings  ; visible: false }
+      },
+      State {
+           name: "AccountDetails"
+           PropertyChanges {target: settingViewList; visible: false }
+           PropertyChanges {target: accountSettings  ; visible: true  }
+      }
+   ]
 }
