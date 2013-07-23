@@ -1,7 +1,7 @@
 import QtQuick 1.1
 
 Rectangle {
-    width: 332
+    width:  332
     height: 542
 
     MainView {

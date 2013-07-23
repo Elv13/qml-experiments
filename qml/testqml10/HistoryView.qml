@@ -7,42 +7,56 @@ Rectangle {
 
    Rectangle {
       id: historyView
-      width: parent.width
+
+      //Attributes
+      width:  parent.width
       height: parent.height
-      color: "black"
+      color:  "black"
 
       HistoryDelegate {
          id: historyDelegate
+
       } //historyDelegate
 
       Flickable {
-         width:parent.width
-         height:parent.height
+         width:        parent.width
+         height:       parent.height
          contentWidth: parent.width; contentHeight: historyCategories.height
          Column {
-            x: 5; y: 5
             id:historyCategories
+
+            //Attributes
+            x:       5
+            y:       5
             spacing: 10
-            width: parent.width
+            width:   parent.width
 
             Repeater {
+               //Attributes
                model: HistoryModel
+               
+               //Content
                Rectangle {
                   id: categoryRect
-                  width: parent.width
+
+                  //Attributes
+                  width:  parent.width
                   height: childrenLayout.height + 60
-                  color: "lightgreen"
+                  color:  "lightgreen"
 
                   Text { text: display
                      font.pointSize: 10
-                     anchors.top: parent.top
+                     anchors.top:    parent.top
                   } //Text
                   Column {
                      spacing: 4
-                     y:20
-                     id:childrenLayout
+                     y:       20
+                     id:      childrenLayout
+
+                     //Content
                      Repeater {
                         id: childrenView
+
                         model:VisualDataModel {
                            id:childrenVisualDataModel
                            model: HistoryModel

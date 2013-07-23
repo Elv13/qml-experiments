@@ -18,45 +18,47 @@
 import QtQuick 1.1
 
 Rectangle {
-    id:dialPad
-    height:200
+   id:dialPad
 
-    signal numbrePressed(string number)
-    function getNumber(idx) {
-        var nb = new Array("1","2","3","4","5","6","7","8","9","*","0","#")
-        return nb[idx]
-    }
-    Grid {
-        columns: 3
-        spacing: 3
-        width:parent.width
-        height:50*4
-        Repeater {
-            model: 12
-            Rectangle {
-                width:parent.width/3 -1
-                height:48
-                color: "#cccccc"
-                radius:5
-                Text {
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
-                    horizontalAlignment: Text.AlignRight
-                    text:getNumber(index)+ "\n" + Array("","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz","","+","","")[index]
-                }
-                MouseArea {
-                     anchors.fill: parent
-                     onClicked: console.log("button clicked "+index)
-                 }
-                /*onClicked: {
-                   playDMTF(index)
-                   dialPad.numbrePressed(dialPad.getNumber(index))
-                }*/
-            }
-        }
-    }
+   //Attributes
+   height:200
 
-    Component.onCompleted: {
-       //dialPad.numbrePressed.connect(display.addText)
-    }
+   //Signals
+   signal numbrePressed(string number)
+
+   //Helpers
+   function getNumber(idx) {
+      var nb = new Array("1","2","3","4","5","6","7","8","9","*","0","#")
+      return nb[idx]
+   }
+
+   //Content
+   Grid {
+      columns: 3
+      spacing: 3
+      width:   parent.width
+      height:  50*4
+      Repeater {
+         model: 12
+         Rectangle {
+            //Attributes
+            width:  parent.width/3 -1
+            height: 48
+            color:  "#cccccc"
+            radius: 5
+
+            //Content
+            Text {
+               anchors.horizontalCenter: parent.horizontalCenter
+               anchors.verticalCenter:   parent.verticalCenter
+               horizontalAlignment:      Text.AlignRight
+               text:                     getNumber(index)+ "\n" + Array("","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz","","+","","")[index]
+            } //Text
+            MouseArea {
+               anchors.fill: parent
+               onClicked: console.log("button clicked "+index)
+            } //MouseArea
+         } //Rectangle
+      } //Repeater
+   } //Grid
 }

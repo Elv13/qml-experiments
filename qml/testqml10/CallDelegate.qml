@@ -33,10 +33,6 @@ Component {
          visible: false
          color:"red"
          
-//          CallDelegate {
-//             id:confItemDelegate
-//          }
-         
          Component {
             id:confItemDelegate
             Rectangle {
