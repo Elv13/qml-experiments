@@ -15,50 +15,53 @@
  *   You should have received a copy of the Lesser GNU General Public License *
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.    *
  *****************************************************************************/
-import QtQuick 1.1
+import QtQuick 2.0
+import Ubuntu.Components 0.1
 
 Rectangle {
-   id:dialPad
+    id:dialPad
+    Rectangle {
 
-   //Attributes
-   height:200
+       //Attributes
+       height:200
 
-   //Signals
-   signal numbrePressed(string number)
+       //Signals
+       signal numbrePressed(string number)
 
-   //Helpers
-   function getNumber(idx) {
-      var nb = new Array("1","2","3","4","5","6","7","8","9","*","0","#")
-      return nb[idx]
-   }
+       //Helpers
+       function getNumber(idx) {
+          var nb = new Array("1","2","3","4","5","6","7","8","9","*","0","#")
+          return nb[idx]
+       }
 
-   //Content
-   Grid {
-      columns: 3
-      spacing: 3
-      width:   parent.width
-      height:  50*4
-      Repeater {
-         model: 12
-         Rectangle {
-            //Attributes
-            width:  parent.width/3 -1
-            height: 48
-            color:  "#cccccc"
-            radius: 5
+       //Content
+       Grid {
+          columns: 3
+          spacing: 3
+          width:   parent.width
+          height:  50*4
+          Repeater {
+             model: 12
+             Rectangle {
+                //Attributes
+                width:  parent.width/3 -1
+                height: 48
+                color:  "#cccccc"
+                radius: 5
 
-            //Content
-            Text {
-               anchors.horizontalCenter: parent.horizontalCenter
-               anchors.verticalCenter:   parent.verticalCenter
-               horizontalAlignment:      Text.AlignRight
-               text:                     getNumber(index)+ "\n" + Array("","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz","","+","","")[index]
-            } //Text
-            MouseArea {
-               anchors.fill: parent
-               onClicked: console.log("button clicked "+index)
-            } //MouseArea
-         } //Rectangle
-      } //Repeater
-   } //Grid
+                //Content
+                Text {
+                   anchors.horizontalCenter: parent.horizontalCenter
+                   anchors.verticalCenter:   parent.verticalCenter
+                   horizontalAlignment:      Text.AlignRight
+                   //text:                     getNumber(index)+ "\n" + Array("","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz","","+","","")[index]
+                } //Text
+                MouseArea {
+                   anchors.fill: parent
+                   onClicked: console.log("button clicked "+index)
+                } //MouseArea
+             } //Rectangle
+          } //Repeater
+       } //Grid
+    }
 }

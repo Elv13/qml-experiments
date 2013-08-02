@@ -1,18 +1,13 @@
-#include <QApplication>
-#include "qmlwindow.h"
-#include "callmodel.h"
+#include <QtGui/QGuiApplication>
+#include "qtquick2applicationviewer.h"
 
 int main(int argc, char *argv[])
 {
-    CallModel::instance();
-    //QGuiApplication app(argc, argv);
+    QGuiApplication app(argc, argv);
 
-    //QtQuick2ApplicationViewer viewer;
-    //viewer.setMainQmlFile(QStringLiteral("qml/testqml10/main.qml"));
-    //viewer.showExpanded();
-    QApplication a(argc, argv);
-    QmlWindow w;
-    w.show();
+    QtQuick2ApplicationViewer viewer;
+    viewer.setMainQmlFile(QStringLiteral("qml/testqml11/main.qml"));
+    viewer.showExpanded();
 
-    return a.exec();
+    return app.exec();
 }

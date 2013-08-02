@@ -1,4 +1,5 @@
-import QtQuick 1.1
+import QtQuick 2.0
+import Ubuntu.Components 0.1
 
 Rectangle {
    
@@ -46,7 +47,8 @@ Rectangle {
             //Events
             onClicked: {
                console.log("Call tab clicked")
-               parent.parent.parent.currentPage = "Calls"
+                mainPageStack.push(callView)
+               //parent.parent.parent.currentPage = "Calls"
             }
          } //MouseArea
       } //rectangle1
@@ -70,7 +72,8 @@ Rectangle {
             anchors.fill: parent
             onClicked: {
                console.log("History tab clicked")
-               parent.parent.parent.currentPage = "History"
+               mainPageStack.push(historyView)
+               //parent.parent.parent.currentPage = "History"
             } //anchors
          } //MouseArea
       } //Rectangle
@@ -118,6 +121,7 @@ Rectangle {
                anchors.fill: parent
                onClicked: {
                   console.log("Settings tab clicked")
+                  mainPageStack.push(accountPage)
                   parent.parent.parent.currentPage = "Settings"
                } //onClicked
          } //MouseArea
