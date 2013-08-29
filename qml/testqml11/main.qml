@@ -35,7 +35,7 @@ MainView {
           //Attributes
           objectName:  "callView"
           //anchors.top: tabView.bottom
-          height:      parent.height - tabView.height
+          height:      parent.height - tabView.height -20
           width:       parent.width
        }
 

@@ -20,19 +20,16 @@ import Ubuntu.Components 0.1
 
 Rectangle {
     id:dialPad
+    color:"transparent"
     Rectangle {
 
        //Attributes
        height:200
+       anchors.fill: parent
+       color:"transparent"
 
        //Signals
        signal numbrePressed(string number)
-
-       //Helpers
-       function getNumber(idx) {
-          var nb = new Array("1","2","3","4","5","6","7","8","9","*","0","#")
-          return nb[idx]
-       }
 
        //Content
        Grid {
@@ -46,16 +43,35 @@ Rectangle {
                 //Attributes
                 width:  parent.width/3 -1
                 height: 48
-                color:  "#cccccc"
+                color:  "transparent"
                 radius: 5
+                border.color: "#aa44aa"
+                border.width: 2
 
                 //Content
                 Text {
+
+                    //Helpers
+                    function getNumber(idx) {
+                       var nb = new Array("1","2","3","4","5","6","7","8","9","*","0","#")
+                       return nb[idx]
+                    }
                    anchors.horizontalCenter: parent.horizontalCenter
                    anchors.verticalCenter:   parent.verticalCenter
                    horizontalAlignment:      Text.AlignRight
-                   //text:                     getNumber(index)+ "\n" + Array("","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz","","+","","")[index]
+                   text:                     getNumber(index)
+                   color:"white"
+                   font.bold: true
+                   id:label
                 } //Text
+                Text {
+                    text: Array("","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz","","+","","")[index]
+                    anchors.top:label.bottom
+                    color:"white"
+                    horizontalAlignment:      Text.AlignRight
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
+
                 MouseArea {
                    anchors.fill: parent
                    onClicked: console.log("button clicked "+index)

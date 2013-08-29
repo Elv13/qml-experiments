@@ -6,55 +6,44 @@ Component {
    Item {
       width: parent.parent.width
       height: 40
-      Rectangle {
-         id: callDelegateItem
-         anchors.fill: parent
-         anchors.margins: 2
-         radius: 5
-         color: "lightsteelblue"
-         Column {
-            anchors.verticalCenter: parent.verticalCenter
-            Text {
-               text: display
-               color: "black"
-               font.bold: true
-            }
-            Text {
-               text: model.number
-               color: "black"
-            }
-         }
+
+      CallDelegateItem {
+        id:callDelegateItem
+        anchors.fill: parent
       }
 
       Rectangle {
          id: confDelegateItem
          height: confDelegateLayout.height + 40
-         width:parent.width
+         width:parent.width - 20
          anchors.margins: 2
          visible: false
-         color:"red"
+         color:"transparent"
+         radius: 5
+         border.color:"#cccccc"
+         border.width: 2
+         x:parent.x+10
          
          Component {
             id:confItemDelegate
-            Rectangle {
-               width:parent.parent.width - 20
-               height:50
-               color:"blue"
-               Text {
-                  anchors.top:parent.top
-                  text:display
-               }
+            CallDelegateItem {
+              width:parent.parent.width - 20
+              height:40
             }
          }
          
          Text {
-            anchors.top:parent.top
+            y:parent.y+5
+            x:parent.x+5
             text:"Conference"
+            font.bold: true
+            font.underline: true
+            color:"#cccccc"
          }
          
          Column {
             id: confDelegateLayout
-            y:20
+            y:30
             width: parent.width - 20
             x: 10
             //anchors.fill: parent
@@ -67,7 +56,7 @@ Component {
                }
             }
          }
-      }
+      } //Conference delegate
 
       Component.onCompleted: {
           if (model.isConference === true) {
