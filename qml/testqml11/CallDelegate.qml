@@ -10,19 +10,24 @@ Component {
       CallDelegateItem {
         id:callDelegateItem
         anchors.fill: parent
+        anchors.margins: 2
+        anchors.leftMargin: 10
+        anchors.rightMargin: 10
       }
 
       Rectangle {
          id: confDelegateItem
          height: confDelegateLayout.height + 40
-         width:parent.width - 20
+         width:parent.width -20
+         anchors.topMargin: 10
          anchors.margins: 2
          visible: false
          color:"transparent"
          radius: 5
          border.color:"#cccccc"
          border.width: 2
-         x:parent.x+10
+         x: 10
+         y:5
          
          Component {
             id:confItemDelegate

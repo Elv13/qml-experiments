@@ -9,23 +9,6 @@ MainView {
    height: 543
 
    //Content
-   TabView {
-      id: tabView
-
-      //Attributes
-      x:      0
-      y:      parent.height-62
-      width:  parent.width
-      height: 62
-      color:  "#ffffff"
-
-      //Events
-      onCurrentPageChanged: {
-         parent.state = currentPage
-      }
-   }
-
-
    PageStack {
        id:mainPageStack
        Component.onCompleted: push(callView)
@@ -34,9 +17,9 @@ MainView {
 
           //Attributes
           objectName:  "callView"
-          //anchors.top: tabView.bottom
-          height:      parent.height - tabView.height -20
+          height:      parent.height -60
           width:       parent.width
+          y:200
        }
 
        HistoryView {
@@ -44,8 +27,7 @@ MainView {
 
           //Attributes
           objectName:  "historyView"
-          //anchors.top: tabView.bottom
-          height:      parent.height - tabView.height
+          height:      parent.height -60
           width:       parent.width
           visible:     false
        }
@@ -55,8 +37,7 @@ MainView {
 
           //Attributes
           objectName:  "contactView"
-          //anchors.top: tabView.bottom
-          height:      parent.height - tabView.height
+          height:      parent.height -60
           width:       parent.width
           visible:     false
        }
@@ -66,8 +47,7 @@ MainView {
 
           //Attributes
           objectName:  "settingView"
-          //anchors.top: tabView.bottom
-          height:      parent.height - tabView.height
+          height:      parent.height -60
           width:       parent.width
           visible:     false
        }
@@ -75,7 +55,7 @@ MainView {
        AccountPage {
            id:accountPage
            objectName:  "accountPage"
-           height:      parent.height - tabView.height
+           height:      parent.height -60
            width:       parent.width
            visible:     false
        }
@@ -83,6 +63,68 @@ MainView {
            id:accountSettingsPage
            objectName: "accountSettingsPage"
            visible:false
+       }
+   }
+
+   Row {
+       anchors.right: parent.right
+       spacing: 10
+       anchors.margins: 5
+       y:15
+       z:100000
+       Image {
+           source: "/home/etudiant/testqml11/ressources/call.png"
+           height: 30
+           width: 30
+           MouseArea {
+              //Attributes
+              anchors.fill: parent
+
+              //Events
+              onClicked: {
+                 console.log("Call tab clicked")
+                  mainPageStack.push(callView)
+                 //parent.parent.parent.currentPage = "Calls"
+              }
+           } //MouseArea
+       }
+       Image {
+           source: "/home/etudiant/testqml11/ressources/history.png"
+           height: 30
+           width: 30
+           MouseArea {
+              anchors.fill: parent
+              onClicked: {
+                 console.log("History tab clicked")
+                 mainPageStack.push(historyView)
+                 //parent.parent.parent.currentPage = "History"
+              } //anchors
+           } //MouseArea
+       }
+       Image {
+           source: "/home/etudiant/testqml11/ressources/contact.png"
+           height: 30
+           width: 30
+           MouseArea {
+                 anchors.fill: parent
+                 onClicked: {
+                    console.log("Contact tab clicked")
+                    parent.parent.parent.currentPage = "Contact"
+                 } //onClicked
+           } //MouseArea
+       }
+       Image {
+           source: "/home/etudiant/testqml11/ressources/tools.png"
+           height: 30
+           width: 30
+           MouseArea {
+                 anchors.fill: parent
+                 onClicked: {
+                    console.log("Settings tab clicked")
+                    mainPageStack.push(accountPage)
+                    parent.parent.parent.currentPage = "Settings"
+                 } //onClicked
+           } //MouseArea
        }
    }
 

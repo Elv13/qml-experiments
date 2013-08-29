@@ -22,9 +22,9 @@ Rectangle {
     id:dialPad
     color:"transparent"
     Rectangle {
+        anchors.margins: 5
 
        //Attributes
-       height:200
        anchors.fill: parent
        color:"transparent"
 
@@ -36,40 +36,45 @@ Rectangle {
           columns: 3
           spacing: 3
           width:   parent.width
-          height:  50*4
+          height:  height/4*4
           Repeater {
              model: 12
              Rectangle {
                 //Attributes
-                width:  parent.width/3 -1
-                height: 48
+                width:  (parent.width-3.333)/3 -1
+                height: dialPad.height/4 - 2
                 color:  "transparent"
                 radius: 5
                 border.color: "#aa44aa"
                 border.width: 2
 
                 //Content
-                Text {
-
-                    //Helpers
-                    function getNumber(idx) {
-                       var nb = new Array("1","2","3","4","5","6","7","8","9","*","0","#")
-                       return nb[idx]
-                    }
-                   anchors.horizontalCenter: parent.horizontalCenter
-                   anchors.verticalCenter:   parent.verticalCenter
-                   horizontalAlignment:      Text.AlignRight
-                   text:                     getNumber(index)
-                   color:"white"
-                   font.bold: true
-                   id:label
-                } //Text
-                Text {
-                    text: Array("","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz","","+","","")[index]
-                    anchors.top:label.bottom
-                    color:"white"
-                    horizontalAlignment:      Text.AlignRight
+                Item {
                     anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter:   parent.verticalCenter
+                    height: label.height + ascii.height
+                    Text {
+
+                        //Helpers
+                        function getNumber(idx) {
+                           var nb = new Array("1","2","3","4","5","6","7","8","9","*","0","#")
+                           return nb[idx]
+                        }
+                        anchors.horizontalCenter: parent.horizontalCenter
+                       horizontalAlignment:      Text.AlignRight
+                       text:                     getNumber(index)
+                       color:"white"
+                       font.bold: true
+                       id:label
+                    } //Text
+                    Text {
+                        text: Array("","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz","","+","","")[index]
+                        anchors.top:label.bottom
+                        color:"white"
+                        horizontalAlignment:      Text.AlignRight
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        id: ascii
+                    }
                 }
 
                 MouseArea {

@@ -14,6 +14,7 @@ Page {
         }
 
         Rectangle {
+            y:20
             width: parent.width
             height: parent.height - dialPad.height
             anchors.top: parent.parent.top +100
@@ -33,9 +34,9 @@ Page {
 
         DialPad {
             id: dialPad
-            height:200
+            height:180
             width:parent.width
-            anchors.bottom: parent.bottom
+            y:parent.height-dialPad.height -10
             z:10000
         } //Dialpad*/
 
