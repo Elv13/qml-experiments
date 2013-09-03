@@ -1,24 +1,37 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
+import SFLPhone 1.0
 
 Page {
     id:callView
-    //anchors.fill:parent
     title:"Calls"
+    property Item currentItem: null
+    property string currentCallId
     Rectangle {
         //anchors.fill:parent.parent
         height:parent.height
         width: parent.width
         CallDelegate {
             id: callDelegate
+            property bool selected : false
+            onSelectedChanged: {
+                console.log("Selection changed")
+                if (currentItem != null)
+                    currentItem.selected = false
+
+                //currentItem = this
+             }
         }
 
         Rectangle {
+            //Geometry
             y:20
             width: parent.width
             height: parent.height - dialPad.height
-            anchors.top: parent.parent.top +100
+            anchors.top: parent.parent
             z:2
+
+            //Display
             color:"transparent"
 
             ListView {
@@ -38,13 +51,15 @@ Page {
             width:parent.width
             y:parent.height-dialPad.height -10
             z:10000
-        } //Dialpad*/
+        } //Dialpad
 
+        //TODO: remove this once the Ubuntu-SDK support it
         Image {
             anchors.fill: parent
             source: "/home/etudiant/testqml11/ressources/background/ubuntubg.png"
             z: 1
         }
 
-    }
+
+    } //CallView
 }

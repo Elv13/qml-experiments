@@ -1,1 +1,5 @@
-<RCC/>
+<RCC>
+    <qresource prefix="/background">
+        <file>ressources/background/ubuntubg.png</file>
+    </qresource>
+</RCC>

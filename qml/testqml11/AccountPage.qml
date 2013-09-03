@@ -7,7 +7,9 @@ Page {
     id:accountPage
     Rectangle {
         anchors.fill: parent
-        color:Theme.palette.normal.base
+        color:        Theme.palette.normal.base
+
+        //Account delegate
         Component {
            id: accountDelegate
            Item {
@@ -27,11 +29,17 @@ Page {
               }
            }
         }
+
+        //Account list
         ListView {
             id:accountListView
+
+            //Geometry
             anchors.top: parent.top
             width:parent.width
             height:parent.height
+
+            //Backend
             delegate: accountDelegate
             model:AccountListModel
         }

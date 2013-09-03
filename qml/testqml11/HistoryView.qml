@@ -1,11 +1,13 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
+import Ubuntu.Components.ListItems 0.1 as ListItem
 
 Page {
     id: historyView
     title:"History"
     Rectangle {
-       anchors.fill: parent
+        height:parent.height
+        width: parent.width
        CallDelegate {
           id: callDelegate
        }
@@ -13,9 +15,13 @@ Page {
        Rectangle {
 
           //Attributes
-          width:  parent.width
-          height: parent.height
-          color:  "black"
+          anchors.fill: parent
+
+          Image {
+              anchors.fill: parent
+              source: "/home/etudiant/testqml11/ressources/background/ubuntubg.png"
+              z: 1
+          }
 
           HistoryDelegate {
              id: historyDelegate
@@ -24,14 +30,16 @@ Page {
 
           Flickable {
              width:        parent.width
-             height:       parent.height
+             height:       parent.height - historySearch.height
              contentWidth: parent.width; contentHeight: historyCategories.height
+             z:2
+             y:20
              Column {
                 id:historyCategories
 
                 //Attributes
                 x:       5
-                y:       5
+                y:       15
                 spacing: 10
                 width:   parent.width
 
@@ -40,18 +48,14 @@ Page {
                    model: HistoryModel
 
                    //Content
-                   Rectangle {
+                   Item {
                       id: categoryRect
 
                       //Attributes
                       width:  parent.width
                       height: childrenLayout.height + 60
-                      color:  "lightgreen"
 
-                      Text { text: display
-                         font.pointSize: 10
-                         anchors.top:    parent.top
-                      } //Text
+                      ListItem.Header { text: display }
                       Column {
                          spacing: 4
                          y:       20
@@ -76,5 +80,11 @@ Page {
              } //Column
           } //Flick
        } //historyView
+       TextField {
+            id:historySearch
+            width:parent.width
+            placeholderText: "Search"
+            y:parent.height-height -10
+        }
     }
 }
