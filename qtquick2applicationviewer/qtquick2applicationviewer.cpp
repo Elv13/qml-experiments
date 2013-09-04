@@ -19,6 +19,7 @@
 
 #include "qtsflphone/callmodel.h"
 #include "qtsflphone/call.h"
+#include "qtsflphone/useractionmodel.h"
 #include "qtsflphone/historymodel.h"
 #include "qtsflphone/accountlistmodel.h"
 #include "qtsflphone/audiocodecmodel.h"
@@ -63,10 +64,10 @@ QtQuick2ApplicationViewer::QtQuick2ApplicationViewer(QWindow *parent)
     qmlRegisterType<VideoCodecModel>("SFLPhone", 1, 0, "VideoCodecModel");
     qmlRegisterType<Account>("SFLPhone", 1, 0, "Account");
     qmlRegisterUncreatableType<Call>("SFLPhone", 1, 0, "Call", "Calls cannot be instanciated this way, use the static constructor instead");
+    qmlRegisterUncreatableType<UserActionModel>("SFLPhone", 1, 0, "UserActionModel", "Use the ones provided by Call objects");
     engine()->rootContext()->setContextProperty("CallModel",CallModel::instance());
     engine()->rootContext()->setContextProperty("HistoryModel",HistoryModel::instance());
     engine()->rootContext()->setContextProperty("AccountListModel",AccountListModel::instance());
-    qDebug() << "\n\n\nMEH" << AccountListModel::instance()->rowCount();
     setResizeMode(QQuickView::SizeRootObjectToView);
 }
 
