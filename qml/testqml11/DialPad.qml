@@ -77,6 +77,14 @@ Rectangle {
                     }
                 }
 
+                //Background image
+                Image {
+                    anchors.fill: parent
+                    fillMode: Image.Tile
+                    source: "/home/etudiant/testqml11/ressources/background/stripe1.png"
+                    z: -1
+                }
+
                 MouseArea {
                    anchors.fill: parent
                    onClicked: console.log("button clicked "+index)

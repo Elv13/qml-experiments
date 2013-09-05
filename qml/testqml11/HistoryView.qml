@@ -15,13 +15,11 @@ Page {
        Rectangle {
 
           //Attributes
-          anchors.fill: parent
-
-          Image {
-              anchors.fill: parent
-              source: "/home/etudiant/testqml11/ressources/background/ubuntubg.png"
-              z: 1
-          }
+          height: parent.height - historySearch.height -10
+          width: parent.width
+          color:"transparent"
+          z:2
+          clip:true
 
           HistoryDelegate {
              id: historyDelegate
@@ -29,11 +27,11 @@ Page {
           } //historyDelegate
 
           Flickable {
-             width:        parent.width
-             height:       parent.height - historySearch.height
-             contentWidth: parent.width; contentHeight: historyCategories.height
-             z:2
+             anchors.fill: parent
              y:20
+             contentWidth: parent.width; contentHeight: historyCategories.height
+             //boundsBehavior:Flickable.StopAtBounds
+
              Column {
                 id:historyCategories
 
@@ -53,12 +51,15 @@ Page {
 
                       //Attributes
                       width:  parent.width
-                      height: childrenLayout.height + 60
+                      height: childrenLayout.height + categoryHeader.height + 20
 
-                      ListItem.Header { text: display }
+                      ListItem.Header {
+                          id: categoryHeader
+                          text: display
+                      }
                       Column {
-                         spacing: 4
-                         y:       20
+                         spacing: 10
+                         anchors.top: categoryHeader.bottom
                          id:      childrenLayout
 
                          //Content
@@ -80,6 +81,12 @@ Page {
              } //Column
           } //Flick
        } //historyView
+
+
+       Image {
+           anchors.fill: parent
+           source: "/home/etudiant/testqml11/ressources/background/ubuntubg.png"
+       }
        TextField {
             id:historySearch
             width:parent.width

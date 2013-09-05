@@ -141,6 +141,8 @@ Rectangle {
                 color: "white"//Theme.palette.normal.baseText
                 anchors.verticalCenter:   parent.verticalCenter
             }
+
+            //Icon
             Image {
                 //Geometry
                 width:  parent.height
@@ -150,6 +152,14 @@ Rectangle {
                 //Content
                 source: model.icon
             }
+
+            //Background
+            /*Image { //SEGFAULT WHEN THIS IS ENABLED
+                anchors.fill: parent
+                fillMode: Image.Tile
+                z:-1
+                source: "/home/etudiant/testqml11/ressources/background/stripe1.png"
+            }*/
         }//Delegate
     }
 
