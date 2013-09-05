@@ -4,7 +4,14 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 
 Page {
     id: historyView
+
+    //Display
     title:"History"
+
+    //Properties
+    property Item currentItemAAA: null
+
+    //Content
     Rectangle {
         height:parent.height
         width: parent.width

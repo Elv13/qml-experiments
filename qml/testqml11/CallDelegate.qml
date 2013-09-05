@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
+import Ubuntu.Components.ListItems 0.1 as ListItem
 
 Component {
    id: callDelegate
@@ -16,28 +17,24 @@ Component {
         id:callDelegateItem
 
         //Geometry
-        width: parent.width - 20
-        height:36
-        y:5
-        x:10
+        width:           parent.width - 20
+        height:          36
+        y:               5
+        x:               10
         anchors.margins: 2
-        anchors.leftMargin: 10
-        anchors.rightMargin: 10
-        anchors.bottomMargin: 5
-        anchors.topMargin: 5
       }
 
       Rectangle {
          id: confDelegateItem
 
          //Geometry
-         height: confDelegateLayout.height + 40
-         width:parent.width -20
+         height:            confDelegateLayout.height + 40
+         width:             parent.width -20
          anchors.topMargin: 10
-         anchors.margins: 2
-         visible: false
-         x: 10
-         y:5
+         anchors.margins:   2
+         visible:           false
+         x:                 10
+         y:                 5
 
          //Display
          color:"transparent"
@@ -53,13 +50,22 @@ Component {
             }
          }
 
-         Text {
-            y:parent.y+5
-            x:parent.x+5
-            text:"Conference"
-            font.bold: true
-            font.underline: true
-            color:"#cccccc"
+         Row {
+             y:parent.y
+             x:parent.x
+             spacing: 4
+             Image {
+                 source: "/home/etudiant/testqml11/ressources/contact.png"
+                 height: 20
+                 width: 20
+             }
+
+             Label {
+                text:"Conference"
+                font.bold: true
+                font.underline: true
+                color: Theme.palette.normal.foregroundText
+             }
          }
 
          Column {
@@ -80,12 +86,12 @@ Component {
       } //Conference delegate
 
       ToolBar {
-          id:toolbar
-          height:60
-          width:callDelegateItem.width
-          x:10
+          id: toolbar
+          height:  60
+          width:   callDelegateItem.width
+          x:       10
           visible: false
-          y:parent.height - 60
+          y:       parent.height - 60
       }
 
       Component.onCompleted: {
@@ -106,28 +112,30 @@ Component {
       } //MouseArea
 
       onSelectedChanged: {
-          console.log("HERE"+selected)
-          if (model.isConference === true) {
+          if (model.isConference == true) {
 
           }
           else {
               callDelegateItem.selected = selected
           }
           if (callView.currentItem && callView.currentItem != item) {
-              console.log("TRY TO UNSELECT")
-              callView.currentItem.selected = false
+            callView.currentItem.selected = false
           }
           if (selected) {
             callView.currentItem = item
-              console.log("BOOM"+model.id)
             callView.currentCallId = model.id
             height = 100
-              toolbar.visible = true
+            toolbar.visible = true
           }
           else {
               height = 40
               toolbar.visible = false
           }
+      }
+
+      ListItem.Header {
+        height: 3
+        y: -2
       }
    }
 }

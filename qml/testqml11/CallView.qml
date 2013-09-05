@@ -30,12 +30,14 @@ Page {
             height: parent.height - dialPad.height
             anchors.top: parent.parent
             z:2
+            clip:true
 
             //Display
             color:"transparent"
 
             ListView {
                 id: callList
+                spacing: 10
                 anchors.top: parent.top
                 width:parent.width
                 height:parent.height

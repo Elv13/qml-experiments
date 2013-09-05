@@ -16,7 +16,6 @@ Rectangle {
            return "/home/etudiant/testqml11/ressources/callstate2/hold.png"
        }
 
-
        UbuntuShape {
            objectName: "ubuntushape_image"
            radius: "medium"
@@ -51,6 +50,5 @@ Rectangle {
        else {
             callDelegateItem.color = "transparent"
        }
-
    }
 } //Call delegate
